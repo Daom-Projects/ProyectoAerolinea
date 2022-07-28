@@ -1,0 +1,38 @@
+<!doctype html>
+<head>
+    <title>Despliegue de una IA App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<html>
+   <body>
+    <header>
+
+      <!-- This div is  intentionally blank. It creates the transparent black overlay over the video which you can modify in the CSS -->
+      <div class="overlay"></div>
+    
+      <!-- The HTML5 video element that will create the background video on the header -->
+      <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="{{ url_for('static', filename='video/airport-2.mp4') }}" type="video/mp4">
+      </video>
+    
+      <!-- The header content -->
+      <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+          <div class="w-100 text-white">
+            <div class="px-4 py-3 my-2 text-center">
+              <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/airport-2.svg') }}" alt="Accident Logo" width="192" height="192"/>
+              <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+              <p class="fs-5">La probabilidad de muertes fatales entre los años 2000 al 2014 es: {{entrada}} HP</p>
+              <h1 class="display-6 fw-bold currency">{{ '%0.2f'| format(prediccion|float) }}</h1>
+              <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg px-4 gap-3">Volver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+   </body>
+</html>

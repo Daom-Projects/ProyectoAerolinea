@@ -1,0 +1,80 @@
+<!doctype html>
+<head>
+    <title>Despliegue de una App IA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<html>
+   <body>
+    <header>
+
+      <!-- This div is  intentionally blank. It creates the transparent black overlay over the video which you can modify in the CSS -->
+      <div class="overlay"></div>
+    
+      <!-- The HTML5 video element that will create the background video on the header -->
+      <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="{{ url_for('static', filename='video/airport-1.mp4') }}" type="video/mp4">
+      </video>
+    
+      <!-- The header content -->
+      <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+          <div class="w-100 text-white">
+            <div class="px-4 py-3 my-2 text-center">
+              <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/airport-1.svg') }}" alt="Aeropuerto" width="192" height="192"/>
+              <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+              <h1 class="display-6 fw-bold">Predicción Accidentes Fatales</h1>
+              <h5 class="">Grupo 2</h5>
+          </div>
+          <form method="post" action="{{url_for('hello')}}">
+              <div class="col-md-6 mx-auto text-center">
+                  <label for="dato" class="form-label fw-bold fs-5">Por favor, ingrese la cantidad de kilometros recorridos en la semana:</label>
+  
+                  <!-- <p class="lead mb-2">Could you please tell me your name?</p> -->
+                  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center align-items-center my-1">
+                      <input type="number" class="form-control" id="dato" name="dato" style="max-width: 256px;">
+                    </div>
+                  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-2">
+                    <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Predecir</button>
+                  </div>            
+              </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+      <!-- sweetAlert2 -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+      <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+      <!-- Generamos una nueva variable de messages con sweetalert2 -->
+      {% with messages = get_flashed_messages(with_categories=True) %}
+          {% if messages %}
+              {% for category, message in messages %}
+                  {% if category == 'error' %}
+                      <script>
+                          Swal.fire({
+                              position: 'center',
+                              icon: 'error',
+                              text: "{{message}}",
+                              showConfirmButton: true,
+                              timer: 5000
+                          })
+                      </script>
+                  {% else %}
+                      <script>
+                          Swal.fire({
+                              position: 'center',
+                              icon: 'success',
+                              text: "{{message}}",
+                              showConfirmButton: true,
+                              timer: 5000
+                          })
+                      </script>
+                  {% endif %}
+              {% endfor %}
+          {% endif %}
+      {% endwith  %}
+   </body>
+</html>
