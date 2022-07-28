@@ -24,8 +24,8 @@
             <div class="px-4 py-3 my-2 text-center">
               <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/airport-2.svg') }}" alt="Accident Logo" width="192" height="192"/>
               <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-              <p class="fs-5">La probabilidad de muertes fatales entre los años 2000 al 2014 es: {{entrada}} HP</p>
-              <h1 class="display-6 fw-bold currency">{{ '%0.2f'| format(prediccion|float) }}</h1>
+              <p class="fs-5">La probabilidad de muertes fatales entre los años 2000 al 2014 para {{entrada}} Kilometros es:</p>
+              <h1 class="display-6 fw-bold ">{{ '%0.2f'| format(prediccion|float) }}</h1>
               <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg px-4 gap-3">Volver</a>
             </div>
           </div>
