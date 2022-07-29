@@ -18,6 +18,7 @@ def favicon():
 @app.route('/hello', methods=['POST'])
 def hello():
     dato = request.form.get('dato')
+    name_airplane = request.form.get('name_airplane')
     if dato:
         import urllib.request
         import json
@@ -64,7 +65,7 @@ def hello():
             # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
             print(error.info())
             print(error.read().decode("utf8", 'ignore'))
-        return render_template('hello.html', prediccion = prediccion, entrada = dato)
+        return render_template('hello.html', prediccion = prediccion, entrada = dato, name_airplane = name_airplane)
     else:
         flash('El valor no ha llegado o es invalido','error')
         return redirect(url_for('index'))
